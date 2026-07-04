@@ -1,0 +1,231 @@
+/*
+Finance OS v1.0
+Obsidian CSS snippet
+
+Install path in your vault:
+.obsidian/snippets/finance-os.css
+Then enable under Settings → Appearance → CSS snippets.
+*/
+
+:root {
+  --fos-radius-sm: 12px;
+  --fos-radius-md: 18px;
+  --fos-radius-lg: 28px;
+  --fos-gap: 14px;
+  --fos-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  --fos-shadow-soft: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --fos-border: color-mix(in srgb, var(--background-modifier-border) 70%, var(--text-accent) 30%);
+  --fos-card: color-mix(in srgb, var(--background-primary) 90%, var(--text-accent) 10%);
+  --fos-card-soft: color-mix(in srgb, var(--background-secondary) 92%, var(--text-accent) 8%);
+  --fos-muted: var(--text-muted);
+}
+
+.finance-os.markdown-preview-view,
+.finance-os.markdown-source-view {
+  --file-line-width: 1180px;
+}
+
+.finance-os .markdown-preview-section > h1:first-child,
+.finance-os h1 {
+  letter-spacing: -0.045em;
+}
+
+.finance-os .fos-hero {
+  margin: 16px 0 24px 0;
+  padding: 30px;
+  border: 1px solid var(--fos-border);
+  border-radius: var(--fos-radius-lg);
+  background:
+    radial-gradient(circle at top right, color-mix(in srgb, var(--text-accent) 22%, transparent), transparent 34%),
+    linear-gradient(135deg, color-mix(in srgb, var(--background-primary) 78%, var(--text-accent) 22%), var(--background-secondary));
+  box-shadow: var(--fos-shadow);
+}
+
+.finance-os .fos-hero-title {
+  font-size: clamp(2.1rem, 5vw, 4.2rem);
+  line-height: 1;
+  font-weight: 850;
+  letter-spacing: -0.075em;
+  margin: 0;
+}
+
+.finance-os .fos-hero-subtitle {
+  color: var(--fos-muted);
+  font-size: 1.05rem;
+  margin-top: 12px;
+  max-width: 760px;
+}
+
+.finance-os .fos-badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.finance-os .fos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--fos-border);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: color-mix(in srgb, var(--background-primary) 75%, var(--text-accent) 25%);
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.finance-os .fos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--fos-gap);
+  margin: 18px 0;
+}
+
+.finance-os .fos-grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.finance-os .fos-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.finance-os .fos-card {
+  border: 1px solid var(--fos-border);
+  border-radius: var(--fos-radius-md);
+  background: var(--fos-card);
+  padding: 18px;
+  box-shadow: var(--fos-shadow-soft);
+  min-height: 92px;
+}
+
+.finance-os .fos-card.soft {
+  background: var(--fos-card-soft);
+}
+
+.finance-os .fos-card h3,
+.finance-os .fos-card h4 {
+  margin-top: 0;
+}
+
+.finance-os .fos-kpi-label {
+  font-size: .76rem;
+  text-transform: uppercase;
+  letter-spacing: .09em;
+  color: var(--fos-muted);
+  font-weight: 800;
+}
+
+.finance-os .fos-kpi-value {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.08;
+  font-weight: 850;
+  letter-spacing: -0.055em;
+  margin-top: 8px;
+}
+
+.finance-os .fos-kpi-note {
+  color: var(--fos-muted);
+  margin-top: 6px;
+  font-size: .9rem;
+}
+
+.finance-os .fos-nav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.finance-os .fos-nav a,
+.finance-os .fos-button {
+  display: block;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid var(--fos-border);
+  background: var(--background-secondary);
+  text-decoration: none !important;
+  font-weight: 800;
+  color: var(--text-normal) !important;
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+
+.finance-os .fos-nav a:hover,
+.finance-os .fos-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(0,0,0,.10);
+  background: color-mix(in srgb, var(--background-secondary) 82%, var(--text-accent) 18%);
+}
+
+.finance-os .fos-section-title {
+  margin-top: 34px;
+  font-size: 1.35rem;
+  font-weight: 850;
+  letter-spacing: -0.04em;
+}
+
+.finance-os .fos-progress {
+  width: 100%;
+  height: 11px;
+  background: var(--background-modifier-border);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 12px 0 4px 0;
+}
+
+.finance-os .fos-progress > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--text-accent);
+}
+
+.finance-os .fos-pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.finance-os .fos-pill {
+  display: inline-block;
+  border: 1px solid var(--fos-border);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: var(--background-secondary);
+  font-size: .84rem;
+  font-weight: 700;
+}
+
+.finance-os .fos-danger { color: var(--text-error); }
+.finance-os .fos-success { color: var(--text-success); }
+.finance-os .fos-muted { color: var(--fos-muted); }
+
+.finance-os table {
+  width: 100%;
+}
+
+.finance-os .callout {
+  border-radius: 16px;
+}
+
+.finance-os .dataview.table-view-table {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+@media (max-width: 980px) {
+  .finance-os .fos-grid,
+  .finance-os .fos-grid.three,
+  .finance-os .fos-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .finance-os .fos-grid,
+  .finance-os .fos-grid.two,
+  .finance-os .fos-grid.three,
+  .finance-os .fos-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .finance-os .fos-hero {
+    padding: 22px;
+  }
+}
