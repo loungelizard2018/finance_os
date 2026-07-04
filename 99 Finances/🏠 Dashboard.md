@@ -6,7 +6,7 @@ bereich: dashboard
 
 <div class="fos-hero">
   <div class="fos-hero-title">💰 Finance OS</div>
-  <div class="fos-hero-subtitle">Persönliches Finanz-Cockpit für Vermögen, Investments, Immobilien, Kredite, Cashflow und Monatsreviews. Dieses öffentliche Template enthält keine echten Finanzdaten.</div>
+  <div class="fos-hero-subtitle">Persönliches Finanz-Cockpit für Vermögen, Investments, Immobilien, Kredite, Cashflow und Monatsreviews.</div>
   <div class="fos-badge-row">
     <span class="fos-badge">Obsidian</span>
     <span class="fos-badge">Dataview</span>
@@ -25,7 +25,7 @@ bereich: dashboard
 <div class="fos-nav">
   <a href="💰 Vermögen.md">💰 Vermögen</a>
   <a href="📈 Investments/📈 Investments.md">📈 Investments</a>
-  <a href="🏡 Immobilien.md">🏡 Immobilien</a>
+  <a href="Immobilien.md">🏡 Immobilien</a>
   <a href="🏦 Kredite.md">🏦 Kredite</a>
   <a href="💳 Ausgaben.md">💳 Ausgaben</a>
   <a href="💼 Einkommen.md">💼 Einkommen</a>
@@ -74,8 +74,3 @@ WHERE typ = "monatsreport"
 SORT monat DESC
 LIMIT 6
 ```
-
-## Datenregel
-
-> [!warning]
-> Keine echten Kontostände, API-Keys, Bankdaten, Dokumente oder Screenshots in dieses öffentliche Repository committen. Reale Monatsreports bleiben lokal im Vault.
