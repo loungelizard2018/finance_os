@@ -1,3 +1,3 @@
-# Docs
+# Documentation
 
-Use INSTALL.md for setup.
+This folder contains public documentation for Finance OS templates.
