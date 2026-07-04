@@ -1,0 +1,9 @@
+# Finance OS
+99 Finances/📄 Dokumente/**
+99 Finances/📅 Monatsreports/*.md
+*.pdf
+*.csv
+*.xlsx
+*.png
+*.jpg
+.env
