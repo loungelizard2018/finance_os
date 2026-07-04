@@ -25,9 +25,18 @@ Then enable under Settings → Appearance → CSS snippets.
   --file-line-width: 1180px;
 }
 
+/* App-like dashboard mode: hide Obsidian chrome inside Finance OS notes. */
+.finance-os .inline-title,
+.finance-os .metadata-container,
+.finance-os .metadata-properties-heading,
+.finance-os .metadata-properties,
+.finance-os .metadata-add-button {
+  display: none !important;
+}
+
 .finance-os .markdown-preview-section > h1:first-child,
 .finance-os h1 {
-  letter-spacing: -0.045em;
+  letter-spacing: -0.025em;
 }
 
 .finance-os .fos-hero {
@@ -45,7 +54,7 @@ Then enable under Settings → Appearance → CSS snippets.
   font-size: clamp(2.1rem, 5vw, 4.2rem);
   line-height: 1;
   font-weight: 850;
-  letter-spacing: -0.075em;
+  letter-spacing: -0.025em;
   margin: 0;
 }
 
@@ -115,7 +124,7 @@ Then enable under Settings → Appearance → CSS snippets.
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   line-height: 1.08;
   font-weight: 850;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.025em;
   margin-top: 8px;
 }
 
@@ -156,7 +165,7 @@ Then enable under Settings → Appearance → CSS snippets.
   margin-top: 34px;
   font-size: 1.35rem;
   font-weight: 850;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.025em;
 }
 
 .finance-os .fos-progress {
