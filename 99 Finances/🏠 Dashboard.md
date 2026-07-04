@@ -15,12 +15,46 @@ bereich: dashboard
   </div>
 </div>
 
-<div class="fos-grid">
-  <div class="fos-card"><div class="fos-kpi-label">Nettovermögen</div><div class="fos-kpi-value">— €</div><div class="fos-kpi-note">aus letztem lokalen Monatsreport</div></div>
-  <div class="fos-card"><div class="fos-kpi-label">Cashflow</div><div class="fos-kpi-value">— €</div><div class="fos-kpi-note">aktueller Monat</div></div>
-  <div class="fos-card"><div class="fos-kpi-label">Sparquote</div><div class="fos-kpi-value">— %</div><div class="fos-kpi-note">Ziel: >30%</div></div>
-  <div class="fos-card"><div class="fos-kpi-label">Investmentquote</div><div class="fos-kpi-value">— %</div><div class="fos-kpi-note">ETF + Bitcoin + Sonstiges</div></div>
-</div>
+```dataviewjs
+const reports = dv.pages('"99 Finances/📅 Monatsreports"')
+  .where(p => p.typ === "monatsreport")
+  .sort(p => p.monat, 'desc');
+
+const latest = reports.length ? reports[0] : null;
+const previous = reports.length > 1 ? reports[1] : null;
+
+const euro = v => typeof v === 'number'
+  ? new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(v)
+  : '— €';
+const pct = v => typeof v === 'number'
+  ? `${new Intl.NumberFormat('de-DE', { maximumFractionDigits: 1 }).format(v)} %`
+  : '— %';
+const diff = (a, b) => typeof a === 'number' && typeof b === 'number'
+  ? a - b
+  : null;
+const noteDiff = v => typeof v === 'number'
+  ? `${v >= 0 ? '+' : ''}${euro(v)} ggü. Vormonat`
+  : 'aus letztem lokalen Monatsreport';
+
+const netDiff = latest && previous ? diff(latest.nettovermoegen, previous.nettovermoegen) : null;
+const investQuote = latest && latest.nettovermoegen && latest.investments
+  ? latest.investments / latest.nettovermoegen * 100
+  : null;
+
+const cards = [
+  ['Nettovermögen', euro(latest?.nettovermoegen), noteDiff(netDiff)],
+  ['Cashflow', euro(latest?.cashflow), latest?.monat ? `Monat ${latest.monat}` : 'aktueller Monat'],
+  ['Sparquote', pct(latest?.sparquote), 'Ziel: >30%'],
+  ['Investmentquote', pct(investQuote), 'Investments / Nettovermögen']
+];
+
+dv.el('div', cards.map(c => `
+  <div class="fos-card">
+    <div class="fos-kpi-label">${c[0]}</div>
+    <div class="fos-kpi-value">${c[1]}</div>
+    <div class="fos-kpi-note">${c[2]}</div>
+  </div>`).join(''), { cls: 'fos-grid' });
+```
 
 <div class="fos-nav">
   <a href="💰 Vermögen.md">💰 Vermögen</a>
@@ -37,25 +71,32 @@ bereich: dashboard
 
 > [!info]+ Letzter Monatsreport
 > ```dataview
-> TABLE WITHOUT ID file.link AS "Monat", nettovermoegen AS "Nettovermögen", cashflow AS "Cashflow", sparquote AS "Sparquote", schulden AS "Schulden"
+> TABLE WITHOUT ID file.link AS "Monat", nettovermoegen AS "Nettovermögen", cash AS "Cash", investments AS "Investments", schulden AS "Schulden", cashflow AS "Cashflow", sparquote AS "Sparquote"
 > FROM "99 Finances/📅 Monatsreports"
 > WHERE typ = "monatsreport"
 > SORT monat DESC
 > LIMIT 1
 > ```
 
-<div class="fos-grid two">
-  <div class="fos-card soft">
-    <div class="fos-kpi-label">Liquidität</div>
-    <div class="fos-progress"><span style="width: 35%"></span></div>
-    <div class="fos-kpi-note">Platzhalter. Später aus Cash / Monatsausgaben berechnen.</div>
-  </div>
-  <div class="fos-card soft">
-    <div class="fos-kpi-label">Schuldenabbau</div>
-    <div class="fos-progress"><span style="width: 22%"></span></div>
-    <div class="fos-kpi-note">Platzhalter. Zielwerte lokal definieren.</div>
-  </div>
-</div>
+```dataviewjs
+const reports2 = dv.pages('"99 Finances/📅 Monatsreports"')
+  .where(p => p.typ === "monatsreport")
+  .sort(p => p.monat, 'desc');
+const r = reports2.length ? reports2[0] : null;
+
+function bar(label, value, note) {
+  const width = Math.max(0, Math.min(100, value || 0));
+  return `<div class="fos-card soft"><div class="fos-kpi-label">${label}</div><div class="fos-progress"><span style="width:${width}%"></span></div><div class="fos-kpi-note">${note}</div></div>`;
+}
+
+let liquidity = r && r.cash && r.ausgaben ? (r.cash / Math.max(r.ausgaben, 1)) * 100 : 0;
+let debtRatio = r && r.schulden && r.immobilien ? (1 - (r.schulden / Math.max(r.immobilien, 1))) * 100 : 0;
+
+dv.el('div', [
+  bar('Liquidität', liquidity, r ? 'Cash im Verhältnis zu Monatsausgaben' : 'noch kein Monatsreport'),
+  bar('Immobilien-Eigenkapital', debtRatio, r ? 'Immobilienwert abzüglich Schulden' : 'noch kein Monatsreport')
+].join(''), { cls: 'fos-grid two' });
+```
 
 ## Offene Finanzaufgaben
 
