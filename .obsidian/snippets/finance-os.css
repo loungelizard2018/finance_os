@@ -1,6 +1,13 @@
-/* Finance OS public Obsidian snippet */
-.finance-os-card {
-  border: 1px solid var(--background-modifier-border);
-  border-radius: 10px;
-  padding: 12px;
+/* Finance OS public CSS snippet */
+.finance-os .markdown-preview-view h1,
+.markdown-preview-view.finance-os h1 {
+  letter-spacing: -0.02em;
+}
+
+.finance-os table {
+  width: 100%;
+}
+
+.finance-os .callout[data-callout="summary"] {
+  border-radius: 14px;
 }
